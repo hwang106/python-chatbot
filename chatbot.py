@@ -1,6 +1,9 @@
-#declaring global variables
+#declaring global variables to be shared by later functions
+#sum_mp will be the sum of all the grades available in the existing marking periods
 sum_mp = 0
+#max_mp will be the total marking periods at the end of the school year
 max_mp = 0
+#number_mp will be the number of marking periods that have finished
 number_mp = 0
 
 #function that validates marking period grade input from user and returns input as float if validation successful.
@@ -19,6 +22,7 @@ def validate_input(mp):
         mp = input("What did you get for the 1st marking period? \n")
         return validate_input(mp)
 
+#function that asks user for initial information about marking periods that are used throughout the program
 def initial_input():
     global sum_mp
     global number_mp
@@ -26,28 +30,33 @@ def initial_input():
     number_mp = input("How many marking periods do you have a grade for so far this school year? \n")
     #the validate_input function was designed to return a float input, hence the int casting for use in for loops
     number_mp = int(validate_input(number_mp))
-
-    max_mp = input("How many total marking periods are there by the end of the school year? \n")
-    max_mp = int(validate_input(max_mp))
     
-    sum_mp = 0
-    grade_list = []
+    max_mp = input("How many total marking periods are there at the end of the school year? \n")
+    #again appropriating the validate_input function out of laziness and int casting the return for use in for loops
+    max_mp = int(validate_input(max_mp))
+
+    #did not end up using list structure, but could be useful for storing grades for multiple classes to calculate something like GPA    
+    #grade_list = []
+    #iterates user input for existing grades
     for x in range(number_mp):
         mp = input("What did you get for marking period " + str(x+1) + "? \n")
         mp = validate_input(mp)
         sum_mp += mp
-        grade_list.append(mp)
+        #grade_list.append(mp)
 
+#function that calculates the average grade of existing marking periods and prints the result
 def avg_grade(sum, mps):
     avg = sum / mps
     print("Your current average is " + str(round(avg, 2)) + ".")
 
+#function that calculates the minimum average needed for remaning marking periods and prints the result
 def min_avg(sum, total_mps, mps):
     grade_target = input("What average grade would you like to get at the end of the year? \n")
     grade_target = validate_input(grade_target)
     grade_needed = ((grade_target * total_mps) - (sum)) / (total_mps - mps)    
     print("You will need a minimum average of " + str(round(grade_needed, 2)) + " for the remaining " + str(total_mps - mps) + " marking periods.")
 
+#function used for flow control at the end of initial calculation
 def ending_choice():
     global sum_mp
     global number_mp
