@@ -8,6 +8,7 @@ while(calc_choice != "1" and calc_choice != "2"):
     calc_choice = input("What would you like the grade calculator to do for you? \n")
 
 if(calc_choice == "1"):
+    number_mp = 0
     print("Testing 1")
     mp1 = float(input("What did you get for the 1st marking period? \n"))
     mp2 = float(input("What did you get for the 2nd marking period? \n"))
@@ -17,5 +18,9 @@ if(calc_choice == "1"):
     print("Your average was " + str(round(avg, 2)))
 
 else:
-    print("Testing 2")
-
+    grade_target = float(input("What grade would you like to get at the end of the year? \n"))
+    mp1 = float(input("What did you get for the 1st marking period? \n"))
+    mp2 = float(input("What did you get for the 2nd marking period? \n"))
+    mp3 = float(input("What did you get for the 3rd marking period? \n"))
+    grade_needed = (grade_target * 4) - (mp1 + mp2 + mp3)    
+    print("You will need a minimum average of " +str(round(grade_needed, 2)))
