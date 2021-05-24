@@ -25,8 +25,11 @@ def validate_input(mp):
 #function that asks user for initial information about marking periods that are used throughout the program
 def initial_input():
     global sum_mp
+    sum_mp = 0
     global number_mp
+    number_mp = 0
     global max_mp
+    max_mp = 0
     number_mp = input("How many marking periods do you have a grade for so far this school year? \n")
     #the validate_input function was designed to return a float input, hence the int casting for use in for loops
     number_mp = int(validate_input(number_mp))
